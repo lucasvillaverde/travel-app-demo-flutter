@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../home_page.dart';
+import 'package:flutter/material.dart';
+import 'package:travel_app/pages/home_page/home_page.dart';
 
 class HeaderPages extends StatefulWidget {
   @override
@@ -60,20 +60,19 @@ class _HeaderPagesState extends State<HeaderPages> {
     return Column(
       children: [
         Expanded(
-            flex: 1,
-            child: Container(
-              constraints: BoxConstraints(maxWidth: double.infinity),
-              child: PageView.builder(
-                  controller: pageController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: headerItems.length,
-                  itemBuilder: (context, index) =>
-                      _buildPage(headerItems[index]),
-                  onPageChanged: (index) => {
-                        _nextPage(t, pageController, index, 4000),
-                        setState(() => this.headerPageIndex = index),
-                      }),
-            )),
+          flex: 1,
+          child: Container(
+            child: PageView.builder(
+                controller: pageController,
+                scrollDirection: Axis.horizontal,
+                itemCount: headerItems.length,
+                itemBuilder: (context, index) => _buildPage(headerItems[index]),
+                onPageChanged: (index) => {
+                      _nextPage(t, pageController, index, 4000),
+                      setState(() => this.headerPageIndex = index),
+                    }),
+          ),
+        ),
         DotsIndicator(
           dotsCount: headerItems.length,
           position: this.headerPageIndex.toDouble(),
@@ -105,24 +104,22 @@ class _HeaderPagesState extends State<HeaderPages> {
             });
   }
 
-  Widget _buildPage(HeaderContent content) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(content.title, style: titleStyle),
-            SizedBox(
-              height: 5.0,
-            ),
-            Text(content.subtitle, style: subtitleStyle),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              content.description,
-              style: descriptionStyle,
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
+  Widget _buildPage(HeaderContent content) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(content.title, style: titleStyle),
+          SizedBox(
+            height: 5.0,
+          ),
+          Text(content.subtitle, style: subtitleStyle),
+          SizedBox(
+            height: 10.0,
+          ),
+          Text(
+            content.description,
+            style: descriptionStyle,
+            textAlign: TextAlign.center,
+          )
+        ],
       );
 }

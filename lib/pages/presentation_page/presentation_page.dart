@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'components/header_pager.dart';
+import 'package:travel_app/pages/home_page/components/header_pager.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Column(children: [
@@ -41,18 +38,38 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: _airplaneImage(),
+              ),
+            ),
+            SafeArea(
               child: Column(
                 children: [
-                  _airplaneImage(),
-                  SizedBox(
-                    height: 50.0,
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: GestureDetector(
+                          child: RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Start your Adventure",
+                                  style: Theme.of(context).textTheme.subtitle1),
+                              WidgetSpan(
+                                  child: Icon(Icons.chevron_right),
+                                  alignment: PlaceholderAlignment.middle)
+                            ]),
+                          ),
+                          onTap: (() => {}),
+                        )),
                   ),
                   Container(
-                    height: size.height * 0.25,
+                    height: size.height * 0.22,
                     width: size.width,
                     child: Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                          EdgeInsets.symmetric(horizontal: size.width * 0.2),
                       child: HeaderPages(),
                     ),
                   ),
@@ -65,17 +82,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _cloudImage() =>
-      Opacity(
-          opacity: 0.2,
-          child: SvgPicture.asset(
-            "assets/images/CLOUD.svg",
-            height: 100,
-            clipBehavior: Clip.none,
-          ));
+  Widget _cloudImage() => Opacity(
+      opacity: 0.2,
+      child: SvgPicture.asset(
+        "assets/images/CLOUD.svg",
+        height: 100,
+        clipBehavior: Clip.none,
+      ));
 
-  Widget _girlImage(size) =>
-      SvgPicture.asset(
+  Widget _girlImage(size) => SvgPicture.asset(
         'assets/images/GIRL.svg',
         height: size.width * 0.5,
         fit: BoxFit.fitWidth,
@@ -83,18 +98,15 @@ class HomePage extends StatelessWidget {
         allowDrawingOutsideViewBox: true,
       );
 
-  Widget _buildingImage(size) =>
-      SvgPicture.asset(
+  Widget _buildingImage(size) => SvgPicture.asset(
         "assets/images/BUILDING.svg",
         color: Color(0xFFCACEEA),
       );
 
-  Widget _grassImage(size) =>
-      SvgPicture.asset("assets/images/GRASS.svg",
-          width: size.width * 0.7, fit: BoxFit.fitWidth);
+  Widget _grassImage(size) => SvgPicture.asset("assets/images/GRASS.svg",
+      width: size.width * 0.7, fit: BoxFit.fitWidth);
 
-  Widget _airplaneImage() =>
-      SvgPicture.asset(
+  Widget _airplaneImage() => SvgPicture.asset(
         "assets/images/AIRPLANE.svg",
         color: Color(0xFFCACEEA),
       );
