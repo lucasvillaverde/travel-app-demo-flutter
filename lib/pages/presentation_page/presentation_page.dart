@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:travel_app/pages/home_page/components/header_pager.dart';
+import 'package:travel_app/pages/home_page/home_page.dart';
+import 'package:travel_app/pages/presentation_page/components/presentation_pager.dart';
 
-class HomePage extends StatelessWidget {
+class PresentationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -61,7 +62,11 @@ class HomePage extends StatelessWidget {
                                   alignment: PlaceholderAlignment.middle)
                             ]),
                           ),
-                          onTap: (() => {}),
+                          onTap: (() => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                              )),
                         )),
                   ),
                   Container(
@@ -70,7 +75,7 @@ class HomePage extends StatelessWidget {
                     child: Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: size.width * 0.2),
-                      child: HeaderPages(),
+                      child: PresentationPager(),
                     ),
                   ),
                 ],
@@ -110,12 +115,4 @@ class HomePage extends StatelessWidget {
         "assets/images/AIRPLANE.svg",
         color: Color(0xFFCACEEA),
       );
-}
-
-class HeaderContent {
-  final title;
-  final subtitle;
-  final description;
-
-  HeaderContent({this.title, this.subtitle, this.description});
 }

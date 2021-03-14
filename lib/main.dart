@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/Development/Projects/Flutter/travel_app/lib/pages/home_page/home_page.dart';
+import 'package:travel_app/pages/presentation_page/presentation_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme:
-          ThemeData(
-              fontFamily: 'GT Walsheim Pro',
-              primarySwatch: Colors.purple
-          ),
-      home: HomePage(),
+      theme: ThemeData(
+          fontFamily: 'GT Walsheim Pro', primarySwatch: Colors.amber),
+      home: PresentationPage(),
     );
   }
 }

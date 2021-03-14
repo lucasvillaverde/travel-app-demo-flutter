@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_app/pages/home_page/home_page.dart';
 
-class HeaderPages extends StatefulWidget {
+class PresentationPager extends StatefulWidget {
   @override
-  _HeaderPagesState createState() => _HeaderPagesState();
+  _PresentationPagerState createState() => _PresentationPagerState();
 }
 
-class _HeaderPagesState extends State<HeaderPages> {
+class _PresentationPagerState extends State<PresentationPager> {
   final PageController pageController = PageController(initialPage: 0);
   Timer t;
 
@@ -122,4 +121,12 @@ class _HeaderPagesState extends State<HeaderPages> {
           )
         ],
       );
+}
+
+class HeaderContent {
+  final title;
+  final subtitle;
+  final description;
+
+  HeaderContent({this.title, this.subtitle, this.description});
 }
