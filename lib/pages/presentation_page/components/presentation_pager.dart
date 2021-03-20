@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app/baseController.dart';
+import 'package:travel_app/constants.dart';
 
 class PresentationPager extends StatefulWidget {
   @override
@@ -22,21 +24,6 @@ class _PresentationPagerState extends State<PresentationPager> {
             curve: Curves.fastLinearToSlowEaseIn));
     super.initState();
   }
-
-  final subtitleStyle = TextStyle(
-      fontSize: 25.0,
-      fontWeight: FontWeight.bold,
-      letterSpacing: 0.6,
-      color: Color(0xFF545454));
-  final titleStyle = TextStyle(
-      fontSize: 25.0,
-      color: Color(0xFF545454),
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.7);
-  final descriptionStyle = TextStyle(
-    color: Color(0xFF828282),
-    fontSize: 15.0,
-  );
 
   var headerItems = <HeaderContent>[
     HeaderContent(
@@ -65,7 +52,8 @@ class _PresentationPagerState extends State<PresentationPager> {
                 controller: pageController,
                 scrollDirection: Axis.horizontal,
                 itemCount: headerItems.length,
-                itemBuilder: (context, index) => _buildPage(headerItems[index]),
+                itemBuilder: (context, index) =>
+                    PresentationPageItem(content: headerItems[index]),
                 onPageChanged: (index) => {
                       _nextPage(t, pageController, index, 4000),
                       setState(() => this.headerPageIndex = index),
@@ -103,24 +91,69 @@ class _PresentationPagerState extends State<PresentationPager> {
             });
   }
 
-  Widget _buildPage(HeaderContent content) => Column(
+  @override
+  void dispose() {
+    t.cancel();
+    super.dispose();
+  }
+}
+
+class PresentationPageItem extends StatelessWidget {
+  final BaseController baseController = BaseController.getInstance();
+
+  final content;
+  final highlightTextStyle = TextStyle(
+      fontSize: 25.0, fontWeight: FontWeight.bold, letterSpacing: 0.6);
+  final titleStyle = TextStyle(
+      fontSize: 25.0, fontWeight: FontWeight.w400, letterSpacing: 0.7);
+  final descriptionStyle = TextStyle(
+    fontSize: 15.0,
+  );
+
+  PresentationPageItem({this.content});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: baseController.isDarkTheme,
+      builder: (context, isDarkTheme, _) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(content.title, style: titleStyle),
+          Text(
+            content.title,
+            style: titleStyle.copyWith(
+              color: isDarkTheme
+                  ? DARK_COLORS[PRIMARY_TEXT_COLOR]
+                  : LIGHT_COLORS[PRIMARY_TEXT_COLOR],
+            ),
+          ),
           SizedBox(
             height: 5.0,
           ),
-          Text(content.subtitle, style: subtitleStyle),
+          Text(
+            content.subtitle,
+            style: highlightTextStyle.copyWith(
+              color: isDarkTheme
+                  ? DARK_COLORS[PRIMARY_HIGHLIGHT_TEXT_COLOR]
+                  : LIGHT_COLORS[PRIMARY_HIGHLIGHT_TEXT_COLOR],
+            ),
+          ),
           SizedBox(
             height: 10.0,
           ),
           Text(
             content.description,
-            style: descriptionStyle,
+            style: descriptionStyle.copyWith(
+              color: isDarkTheme
+                  ? DARK_COLORS[PRIMARY_TEXT_COLOR]
+                  : LIGHT_COLORS[PRIMARY_TEXT_COLOR],
+            ),
             textAlign: TextAlign.center,
           )
         ],
-      );
+      ),
+    );
+  }
 }
 
 class HeaderContent {
