@@ -2,8 +2,11 @@
   
     
 # Travel App demo 
-<p><img src="https://img.shields.io/github/last-commit/lucasvillaverde/travel-app-demo-flutter?style=flat-square" />     
-<img src="https://img.shields.io/badge/Developed%20by-Lucas%20Villa%20Verde-green?style=flat-square" /> </p>
+<p>
+<img src="https://img.shields.io/github/last-commit/lucasvillaverde/travel-app-demo-flutter?style=flat-square" />     
+<img src="https://img.shields.io/badge/Developed%20by-Lucas%20Villa%20Verde-green?style=flat-square" />
+<img src="https://img.shields.io/github/stars/lucasvillaverde/travel-app-demo-flutter?style=flat-square" />
+</p>
 <br/>  
 <b>Travel app concept for practicing Flutter skills at a Beginner level.</b>  
 <br />  
