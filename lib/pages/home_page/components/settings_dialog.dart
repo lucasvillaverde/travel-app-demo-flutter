@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_app/baseController.dart';
 import 'package:travel_app/constants.dart';
+import 'package:travel_app/controllers/baseController.dart';
 
 class SettingsDialog extends StatelessWidget {
   final BaseController baseController = BaseController.getInstance();

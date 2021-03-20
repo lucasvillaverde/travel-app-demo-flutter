@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:travel_app/baseController.dart';
 import 'package:travel_app/constants.dart';
+import 'package:travel_app/controllers/baseController.dart';
 import 'package:travel_app/pages/home_page/home_page.dart';
 import 'package:travel_app/pages/presentation_page/components/presentation_pager.dart';
 
